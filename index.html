@@ -1,438 +1,430 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Mantis Solar | A Máquina de Vendas Fotovoltaica de Elite</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial - Nordeste Sul Turismo</title>
+    <!-- Google Fonts para Tipografia Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-deep: #030508;
-            --primary: #fbbf24; /* Amarelo Solar / Ouro */
-            --primary-glow: rgba(251, 191, 36, 0.4);
-            --primary-dim: rgba(251, 191, 36, 0.08);
-            --accent: #10b981; /* Verde Sucesso */
-            --accent-glow: rgba(16, 185, 129, 0.3);
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.06);
-            --chat-bg: #0b141a;
-            --chat-received: #202c33;
-            --chat-sent: #005c4b;
+            --bg-base: #030303;
+            --bg-surface: rgba(255, 255, 255, 0.03);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-highlight: rgba(212, 175, 55, 0.3);
+            --gold-primary: #D4AF37;
+            --gold-light: #EBD074;
+            --gold-dark: #9E8226;
+            --text-title: #FFFFFF;
+            --text-body: #A1A1A6;
+            --text-highlight: #EAEAEA;
+            --font-title: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
         }
 
-        * { box-sizing: border-box; transition: all 0.3s ease; scroll-behavior: smooth; }
-        body { background-color: var(--bg-deep); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; overflow-x: hidden; }
-        section { width: 100%; max-width: 1200px; margin: 0 auto; padding: 80px 20px; position: relative; }
-
-        .mouse-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle 500px at var(--x, 50%) var(--y, 50%), rgba(251, 191, 36, 0.04), transparent);
-            pointer-events: none; z-index: 1;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .badge { background: var(--primary-dim); color: var(--primary); padding: 8px 18px; border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border: 1px solid var(--primary-glow); display: inline-block; margin-bottom: 20px; }
-        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; line-height: 1.1; margin: 0; }
-        .highlight { color: var(--primary); }
-
-        /* --- HERO --- */
-        .hero { text-align: center; padding-top: 120px; padding-bottom: 60px; background: radial-gradient(circle at center, rgba(251, 191, 36, 0.03) 0%, transparent 70%); }
-        .hero h1 { font-size: clamp(32px, 7vw, 64px); letter-spacing: -2px; margin-bottom: 25px; }
-        .hero p { max-width: 800px; margin: 0 auto; font-size: 20px; color: var(--text-dim); line-height: 1.6; }
-
-        /* --- JORNADA FLOW INDICATORS --- */
-        .step-container { display: grid; gap: 80px; margin-top: 60px; }
-        .step-block { background: rgba(255, 255, 255, 0.01); border: 1px solid var(--glass-border); border-radius: 40px; padding: 40px; display: grid; lg:grid-template-columns: 1fr 1.2fr; gap: 50px; align-items: center; position: relative; overflow: hidden; }
-        .step-block::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--primary); }
-        
-        .step-num { font-size: 80px; font-weight: 900; font-family: 'Outfit'; color: var(--primary-dim); position: absolute; right: 40px; top: -10px; pointer-events: none; }
-        .step-content h3 { font-size: clamp(24px, 4vw, 36px); margin-bottom: 20px; font-weight: 700; }
-        .step-content p { color: var(--text-dim); line-height: 1.6; font-size: 16px; margin-bottom: 20px; }
-
-        /* --- STYLES DA CALCULADORA INTERATIVA --- */
-        .calc-box { background: #0b0f16; border-radius: 24px; padding: 30px; border: 1px solid var(--glass-border); box-shadow: 0 20px 45px rgba(0,0,0,0.4); }
-        .calc-range { -webkit-appearance: none; width: 100%; height: 6px; border-radius: 10px; background: #222; outline: none; margin: 20px 0; }
-        .calc-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); cursor: pointer; box-shadow: 0 0 10px var(--primary-glow); }
-
-        /* --- STYLES DO WHATSAPP MOCKUP --- */
-        .phone-mockup { background: #000; border-radius: 40px; border: 8px solid #1a1a1a; padding: 8px; box-shadow: 0 30px 100px rgba(0,0,0,0.8); height: 580px; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-        .chat-header { background: #202c33; padding: 12px; display: flex; align-items: center; gap: 10px; }
-        .chat-header .avatar { width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 14px; }
-        .chat-body { background: var(--chat-bg); flex: 1; padding: 15px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; font-size: 12px; scrollbar-width: none; }
-        .chat-body::-webkit-scrollbar { display: none; }
-        .msg { padding: 8px 12px; border-radius: 12px; max-width: 85%; line-height: 1.4; position: relative; }
-        .msg.received { background: var(--chat-received); align-self: flex-start; border-bottom-left-radius: 2px; }
-        .msg.sent { background: var(--chat-sent); align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        /* --- STYLES DO AGENDA MOCKUP --- */
-        .calendar-box { background: #0b0f16; border-radius: 24px; padding: 25px; border: 1px solid var(--glass-border); box-shadow: 0 20px 45px rgba(0,0,0,0.4); }
-        .calendar-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 11px; color: var(--text-dim); margin-top: 15px; }
-        .day-num { padding: 8px; border-radius: 8px; background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.02); }
-        .day-num.active { background: var(--primary-dim); border-color: var(--primary); color: var(--primary); font-weight: bold; }
-        .time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 15px; }
-        .slot { background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); padding: 8px; border-radius: 8px; text-align: center; font-size: 12px; cursor: pointer; }
-        .slot.booked { background: var(--primary-dim); border-color: var(--primary); color: var(--primary); font-weight: bold; position: relative; }
-        .slot.booked::after { content: "Reservado"; display: block; font-size: 8px; color: var(--accent); font-weight: 800; text-transform: uppercase; }
-
-        /* --- STYLES DO PIPELINE --- */
-        .pipeline-display { margin-top: 40px; background: #0b0f16; border-radius: 35px; padding: 35px; border: 1px solid var(--glass-border); overflow-x: auto; }
-        .pipeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; min-width: 900px; }
-        .pipeline-col { background: rgba(255,255,255,0.02); border-radius: 20px; padding: 15px; border-top: 4px solid var(--primary); height: fit-content; }
-        .pipeline-col h4 { font-size: 12px; text-transform: uppercase; margin-bottom: 15px; color: var(--primary); border-bottom: 1px solid var(--primary-dim); padding-bottom: 10px; font-weight: 700; letter-spacing: 1px; }
-        .lead-card { background: #111b21; padding: 15px; border-radius: 12px; border: 1px solid #222; margin-bottom: 12px; font-size: 13px; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        .lead-card .value { display: block; color: var(--accent); font-weight: 800; font-size: 11px; margin-top: 8px; }
-        .lead-card .status { font-size: 9px; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; margin-top: 5px; display: inline-block; color: #fff; }
-
-        /* --- STATS BOXES --- */
-        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 40px; }
-        .stat-box { background: var(--glass); padding: 25px; border-radius: 20px; border: 1px solid var(--glass-border); }
-        .stat-box h5 { font-size: 12px; color: var(--text-dim); text-transform: uppercase; margin: 0 0 8px 0; letter-spacing: 1px; }
-        .stat-box span { font-size: 26px; font-weight: 800; font-family: 'Outfit'; color: #fff; }
-
-        /* --- FAQ --- */
-        .faq-section { background: rgba(255,255,255,0.01); border-radius: 50px; padding: 80px 20px; border: 1px solid var(--glass-border); margin: 60px 0; }
-        .faq-grid { display: grid; gap: 15px; max-width: 900px; margin: 40px auto 0; }
-        .faq-item { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 15px; padding: 22px; cursor: pointer; transition: all 0.3s ease; }
-        .faq-item:hover { background: rgba(255,255,255,0.04); border-color: var(--primary-glow); }
-        .faq-question { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 16px; color: var(--primary); }
-        .faq-answer { display: none; margin-top: 15px; color: var(--text-dim); line-height: 1.6; font-size: 14px; border-top: 1px solid var(--glass-border); padding-top: 15px; }
-        .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .fa-chevron-down { transform: rotate(180deg); }
-
-        /* --- PLANOS --- */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 50px; }
-        .price-card { background: #0b0f16; border: 1px solid #1a2230; padding: 40px 25px; border-radius: 35px; text-align: left; display: flex; flex-direction: column; }
-        .price-card.featured { border: 2px solid var(--primary); box-shadow: 0 0 35px var(--primary-dim); }
-        .price-card h3 { color: var(--primary); font-size: 16px; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
-        .price-card .desc { font-size: 13px; color: var(--text-dim); line-height: 1.5; margin-bottom: 25px; min-height: 60px; display: block; }
-        .tag-recurrence { font-size: 10px; color: var(--accent); font-weight: 700; background: rgba(74, 222, 128, 0.1); padding: 5px 10px; border-radius: 6px; width: fit-content; text-transform: uppercase; }
-
-        /* --- FINAL CTA --- */
-        .final-cta { text-align: center; padding: 120px 20px; background: radial-gradient(circle at center, rgba(251, 191, 36, 0.05) 0%, transparent 80%); }
-        .final-cta h2 { font-size: clamp(24px, 5vw, 42px); max-width: 900px; margin: 0 auto; line-height: 1.2; font-weight: 800; }
-        .btn-final { display: inline-block; padding: 22px 60px; background: var(--primary); color: #000; border-radius: 100px; font-weight: 800; text-transform: uppercase; text-decoration: none; font-size: 18px; box-shadow: 0 20px 50px var(--primary-glow); margin-top: 40px; }
-        .btn-final:hover { transform: scale(1.05); }
-
-        @media (max-width: 1024px) {
-            .step-block { grid-template-columns: 1fr; }
-            .phone-mockup, .calendar-box { max-width: 450px; margin: 0 auto; }
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-body);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            display: flex;
+            justify-content: center;
+            overflow-x: hidden;
         }
-        @media (max-width: 768px) {
-            section { padding: 40px 15px; }
-            .step-block { padding: 25px 20px; }
+
+        /* Efeito de iluminação premium no fundo (Spotlight) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 600px;
+            background: radial-gradient(ellipse at top, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 760px;
+            width: 100%;
+            padding: 4rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Animações de Entrada Fluida */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero / Cabeçalho */
+        header {
+            text-align: center;
+            padding-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            font-family: var(--font-title);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-primary);
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-highlight);
+        }
+
+        h1 {
+            font-family: var(--font-title);
+            font-size: 3.2rem;
+            font-weight: 500;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            color: var(--text-title);
+            line-height: 1.1;
+        }
+
+        h2 {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-title);
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-body);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Seções e Cards (Glassmorphism sutil) */
+        .section-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 3rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .section-card:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .feature-block {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-subtle);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 3px solid var(--gold-primary);
+        }
+
+        .feature-item h3 {
+            font-family: var(--font-title);
+            color: var(--text-highlight);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .feature-item p {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Estrutura de Investimento */
+        .investment-list {
+            list-style: none;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .investment-item {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: background 0.3s ease;
+        }
+
+        .investment-item:hover {
+            background: rgba(212, 175, 55, 0.03);
+            border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        .price-title {
+            font-family: var(--font-title);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .price-value {
+            font-family: var(--font-title);
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--text-title);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-desc {
+            font-size: 0.95rem;
+            color: var(--text-body);
+        }
+
+        /* Garantia */
+        .guarantee-card {
+            border: 1px solid var(--border-highlight);
+            background: linear-gradient(180deg, rgba(212, 175, 55, 0.08) 0%, rgba(0, 0, 0, 0.2) 100%);
+            text-align: center;
+            padding: 4rem 3rem;
+        }
+
+        .guarantee-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .guarantee-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--gold-primary);
+        }
+
+        .guarantee-card h2 {
+            color: var(--gold-primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .guarantee-card p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+
+        .highlight-text {
+            color: var(--text-highlight);
+            font-weight: 500;
+        }
+
+        /* Dobra de Fechamento & CTA */
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background: transparent;
+            border: none;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.15rem;
+            max-width: 550px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Botão API WhatsApp High Ticket */
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background-color: var(--gold-primary);
+            color: #000000;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 1.2rem 2.8rem;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.6s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+            background-color: var(--gold-light);
+        }
+
+        .cta-button:hover::after {
+            left: 150%;
+        }
+
+        .whatsapp-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+            font-family: var(--font-title);
+            font-size: 0.8rem;
+            color: #555555;
+            border-top: 1px solid var(--border-subtle);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            .container { padding: 2rem 1rem; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.5rem; }
+            .section-card { padding: 2rem 1.5rem; }
+            .guarantee-card { padding: 2.5rem 1.5rem; }
+            .cta-button { padding: 1rem 1.5rem; width: 100%; font-size: 1rem; }
+            .cta-section h2 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="mouse-glow" id="glow"></div>
-
-<!-- HERO -->
-<section class="hero">
-    <div class="badge">Ecosistema Mantis Solar</div>
-    <h1>Conecte Seu Funil, <br><span class="highlight">Automatize Suas Vendas.</span></h1>
-    <p>Uma experiência de ponta a ponta que atrai o lead qualificado, faz a análise técnica por inteligência artificial, agenda o contato e organiza todo o seu pipeline de faturamento.</p>
-</section>
-
-<!-- JORNADA DA VENDA FOTOVOLTAICA -->
-<section>
-    <div style="text-align: center;">
-        <div class="badge">Como Funciona</div>
-        <h2>A Jornada do Lead ao Contrato Assinado</h2>
-        <p style="color: var(--text-dim); max-width: 700px; margin: 15px auto;">Esqueça a bagunça de processos manuais. Conheça a engrenagem perfeita que cuida de todo o fluxo operacional da sua empresa solar.</p>
-    </div>
-
-    <div class="step-container">
+    <div class="container">
         
-        <!-- PASSO 1: SITE & CALCULADORA -->
-        <div class="step-block">
-            <span class="step-num">01</span>
-            <div class="step-content">
-                <div class="badge">Passo 1: A Atração</div>
-                <h3>Site Premium & Calculadora Solar</h3>
-                <p>O seu futuro cliente chega a uma página moderna com uma calculadora interativa inteligente. Em vez de preencher formulários chatos, ele arrasta um controle deslizante e vê na hora a sua economia projetada.</p>
-                <p style="font-size: 14px; color: var(--primary); font-weight: 600;"><i class="fa-solid fa-lightbulb"></i> Experimente no simulador ao lado:</p>
-            </div>
-            <!-- CALCULADORA INTERATIVA REAL -->
-            <div class="calc-box">
-                <h4 style="font-size: 14px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 15px;">Simulador de Economia Solar</h4>
-                <div style="margin-bottom: 20px;">
-                    <label style="display: flex; justify-content: space-between; font-size: 13px;">
-                        <span>Valor Médio da Conta de Luz:</span>
-                        <b id="bill-label" class="text-white">R$ 650</b>
-                    </label>
-                    <input type="range" id="bill-range" min="150" max="5000" value="650" class="calc-range">
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center; margin-bottom: 20px;">
-                    <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px;">
-                        <span style="font-size: 11px; color: var(--text-dim);">Economia Anual Est.</span>
-                        <b id="annual-savings" style="display: block; font-size: 18px; color: var(--accent);">R$ 7.020</b>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.02); padding: 12px; border-radius: 12px;">
-                        <span style="font-size: 11px; color: var(--text-dim);">Potência do Sistema</span>
-                        <b id="system-size" style="display: block; font-size: 18px; color: var(--primary);">5.0 kWp</b>
-                    </div>
-                </div>
-                <button class="w-full py-3 bg-emerald-600 text-black font-extrabold rounded-lg hover:bg-emerald-500 transition-all text-sm uppercase tracking-wider" style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    <i class="fa-brands fa-whatsapp"></i> Simular Proposta Oficial
-                </button>
-            </div>
-        </div>
+        <!-- HEADER -->
+        <header class="fade-in-up delay-1">
+            <span class="tag">Proposta Comercial</span>
+            <h1>Nordeste Sul Turismo</h1>
+            <p class="subtitle">Estratégia de Inteligência Artificial e CRM de Alta Performance para previsibilidade e escala em vendas.</p>
+        </header>
 
-        <!-- PASSO 2: IA NO WHATSAPP (Diálogo estendido e estruturado com Michele e fechamento do Marcos) -->
-        <div class="step-block">
-            <span class="step-num">02</span>
-            <div class="step-content">
-                <div class="badge">Passo 2: A Triagem</div>
-                <h3>O Agente de IA no WhatsApp</h3>
-                <p>Após simular, o lead é enviado ao seu WhatsApp. O Agente de IA reconhece o nome do lead imediatamente para criar conexão, realiza a leitura inteligente da fatura enviada, explica de forma transparente os próximos passos com o consultor e sugere horários específicos para o agendamento.</p>
-                <p>Nenhum atraso, nenhuma oportunidade perdida. Triagem profissional em tempo real.</p>
-            </div>
-            <!-- WHATSAPP MOCKUP -->
-            <div class="phone-mockup">
-                <div class="chat-header">
-                    <div class="avatar">S</div>
-                    <div>
-                        <h4 style="font-size: 13px; font-weight: 700;">Mantis Solar AI</h4>
-                        <span style="font-size: 10px; color: var(--accent);">Online</span>
-                    </div>
+        <!-- SEÇÃO 1: DIFERENCIAL -->
+        <section class="section-card fade-in-up delay-2">
+            <h2>O Diferencial Estratégico</h2>
+            <p>Implementação de um Agente de Inteligência Artificial operando diretamente no seu WhatsApp, completamente integrado a um ecossistema de CRM.</p>
+            
+            <div class="feature-block">
+                <div class="feature-item">
+                    <h3>1. O Foco da Operação</h3>
+                    <p>Sua equipe deixa de perder tempo com curiosos. O agente realiza a triagem completa, atende de imediato e qualifica os leads de forma inteligente. <strong>Sua equipe atende somente quem realmente quer comprar.</strong></p>
                 </div>
-                <div class="chat-body">
-                    <div class="msg received">Olá! Acabei de simular no site. Quero ver o custo invisível e ter a minha proposta oficial.</div>
-                    <div class="msg sent">Olá, Michele! Seja muito bem-vinda à Mantis Solar. ☀️<br><br>Fico muito feliz em ajudar você a economizar! Para que nossa engenharia monte seu estudo de irradiação exato e valide o ROI do seu telhado, envie por favor uma foto ou PDF da sua última fatura de energia por aqui.</div>
-                    <div class="msg received"><i>[Fatura_Enviada.jpg]</i></div>
-                    <div class="msg sent">Perfeito! Leitura concluída com sucesso.<br><br>Identifiquei um consumo médio de 650 kWh/mês na sua conta. Você precisará de um sistema de 5.0 kWp para zerar quase 100% dessa despesa.<br><br>O seu próximo passo agora é um bate-papo de aproximadamente 30 minutos com o nosso consultor especialista, onde ele vai explorar os detalhes técnicos, as opções de financiamento e desenhar seu ganho real.<br><br>Para facilitar para você, o nosso especialista possui vaga na <b>quarta-feira às 9:00</b> ou na <b>quinta-feira às 15:00</b>. Qual dessas opções funciona melhor para a sua rotina?</div>
-                    <div class="msg received">Pode ser na quarta-feira às 9h.</div>
-                    <div class="msg sent">Excelente, Michele! Está agendado. O consultor <b>Marcos</b> irá entrar em contato contigo nessa quarta-feira às 9h para desenhar sua proposta perfeita. <br><br>Muito obrigado e até a próxima! ☀️</div>
+                <div class="feature-item">
+                    <h3>2. O Futuro e a Escala</h3>
+                    <p>Você terá controle total e absoluto sobre os leads. Todo o histórico forma um banco de dados higienizado e segmentado, entregando a assertividade necessária para <strong>automação e disparos de mensagens em massa.</strong></p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- PASSO 3: AGENDAMENTO INTEGRADO -->
-        <div class="step-block">
-            <span class="step-num">03</span>
-            <div class="step-content">
-                <div class="badge">Passo 3: Conexão</div>
-                <h3>Agendamento Direto na Agenda do Consultor</h3>
-                <p>Assim que os dados do lead são confirmados, a IA apresenta os horários livres na agenda do seu consultor técnico. O lead escolhe o melhor momento e o sistema faz o agendamento de forma transparente.</p>
-                <p>Sua equipe de vendas entra em ação na hora marcada, munida com todas as informações prontas para converter.</p>
-            </div>
-            <!-- AGENDA MOCKUP -->
-            <div class="calendar-box">
-                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold;">
-                    <span>Maio de 2026</span>
-                    <i class="fa-solid fa-calendar text-yellow-500"></i>
-                </div>
-                <div class="calendar-days">
-                    <span class="day-num">12</span><span class="day-num active">13</span><span class="day-num">14</span><span class="day-num">15</span><span class="day-num">16</span><span class="day-num">17</span><span class="day-num">18</span>
-                </div>
-                <div class="time-slots">
-                    <span class="slot booked">09:00</span>
-                    <span class="slot">10:30</span>
-                    <span class="slot">14:00</span>
-                    <span class="slot">15:30</span>
-                    <span class="slot">17:00</span>
-                    <span class="slot booked">18:00</span>
-                </div>
-                <div style="margin-top: 15px; border-top: 1px solid var(--glass-border); padding-top: 15px; font-size: 11px; color: var(--text-dim); display: flex; align-items: center; gap: 8px;">
-                    <i class="fa-solid fa-circle-check text-green-500"></i>
-                    <span>Consultor Técnico Marcos reservado para Michele na quarta-feira às 09:00.</span>
-                </div>
-            </div>
-        </div>
+        <!-- SEÇÃO 2: INVESTIMENTO -->
+        <section class="section-card fade-in-up delay-3">
+            <h2>Estrutura de Investimento</h2>
+            <p>Modelo validado com contrato de prestação de serviços de 6 a 12 meses, garantindo suporte e evolução contínua.</p>
+            
+            <ul class="investment-list">
+                <li class="investment-item">
+                    <span class="price-title">Setup & Implementação (CRM + IA)</span>
+                    <span class="price-value">R$ 1.500,00 <span style="font-size:1rem; color:var(--text-body); font-weight:400;">(Entrada)</span></span>
+                    <span class="price-desc">Saldo restante de R$ 2.000,00 diluído em 6 parcelas fixas.</span>
+                </li>
+                <li class="investment-item">
+                    <span class="price-title">Licenciamento, Operação & Tokens</span>
+                    <span class="price-value">R$ 1.500,00 <span style="font-size:1rem; color:var(--text-body); font-weight:400;">/ mês</span></span>
+                    <span class="price-desc">Cobre o suporte contínuo, manutenção do sistema e os gastos de tokens operacionais da ferramenta de IA para garantir o atendimento no WhatsApp.</span>
+                </li>
+            </ul>
+        </section>
 
-        <!-- PASSO 4: PIPELINE & GESTÃO (Métricas e Destaque de Pós-Venda) -->
-        <div class="step-block">
-            <span class="step-num">04</span>
-            <div class="step-content">
-                <div class="badge">Passo 4: Soberania</div>
-                <h3>Métricas de Elite & Pipeline estratégico</h3>
-                <p>Todo o processo de triagem e agendamento gera cartões automáticos dentro do seu painel administrativo. Além disso, o sistema conta com a <b>automação mensal de envio e conferência de faturas via IA</b> para os seus clientes finais, otimizando seu pós-venda.</p>
-                <p>Dados refinados, controle completo e cobrança recorrente automatizada para sua integradora.</p>
+        <!-- SEÇÃO 3: GARANTIA -->
+        <section class="section-card guarantee-card fade-in-up delay-4">
+            <div class="guarantee-icon">
+                <!-- Shield Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0z"/></svg>
             </div>
-            <div class="stats-row" style="margin-top: 0; width: 100%;">
-                <div class="stat-box" style="padding: 15px;">
-                    <h5 style="font-size: 10px;">Funil Projetado</h5>
-                    <span style="font-size: 18px; color: var(--primary);">R$ 150.000</span>
-                </div>
-                <div class="stat-box" style="padding: 15px;">
-                    <h5 style="font-size: 10px;">Leads no Mês</h5>
-                    <span style="font-size: 18px; color: var(--accent);">68 Ativos</span>
-                </div>
-            </div>
-        </div>
+            <h2>7 Dias de Garantia</h2>
+            <p class="highlight-text">Risco absolutamente zero para o seu negócio.</p>
+            <p>Após a conclusão de toda a implementação do sistema, você terá 7 dias de período de teste validados na prática.</p>
+            <p>Se a Inteligência Artificial não funcionar como projetado, não entregar a triagem combinada e o resultado não for o esperado, <span class="highlight-text">nós devolvemos integralmente 100% do valor pago.</span></p>
+        </section>
+
+        <!-- SEÇÃO 4: CTA / FECHAMENTO -->
+        <section class="cta-section fade-in-up delay-5">
+            <h2>O Próximo Passo</h2>
+            <p>A tecnologia exata desenhada para o seu cenário, com uma garantia incondicional blindando o seu investimento. A decisão de escalar suas vendas no automático é agora.</p>
+            
+            <!-- Link da API do WhatsApp configurado para DDD 21 964666813 -->
+            <a href="https://api.whatsapp.com/send?phone=5521964666813&text=Ol%C3%A1!%20Aprovo%20a%20proposta%20comercial%20da%20Nordeste%20Sul%20Turismo%20e%20quero%20iniciar%20o%20setup." class="cta-button" target="_blank" rel="noopener noreferrer">
+                <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zM223.9 414.7c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 334.1l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+                </svg>
+                Aprovar Proposta e Iniciar Setup
+            </a>
+        </section>
+
+        <footer>
+            AGÊNCIA MANTIS &copy; 2026 | Tecnologia & Conversão
+        </footer>
 
     </div>
-</section>
-
-<!-- PIPELINE OPERACIONAL VISUAL (Números redimensionados de forma hiper-realista para acompanhar R$ 150k de Funil) -->
-<section>
-    <div style="text-align: center;">
-        <div class="badge">Sua Próxima Plataforma</div>
-        <h2>O Fluxo do seu Próximo Megawatt</h2>
-        <p style="color: var(--text-dim); max-width: 700px; margin: 15px auto;">Gerencie todos os leads atraídos pelo site e agendados pela IA de forma visual.</p>
-    </div>
-
-    <div class="pipeline-display">
-        <div class="pipeline-grid">
-            <!-- COLUNA 1 -->
-            <div class="pipeline-col">
-                <h4>Fatura Recebida</h4>
-                <div class="lead-card">Residencial - SP <span class="value">R$ 22.000</span><span class="status">Consumo: 800kWh</span></div>
-                <div class="lead-card">Comercial Peq. - MG <span class="value">R$ 38.000</span><span class="status">Consumo: 1.5MWh</span></div>
-                <div class="lead-card">Residencial - BA <span class="value">R$ 24.500</span><span class="status">Consumo: 900kWh</span></div>
-            </div>
-            <!-- COLUNA 2 -->
-            <div class="pipeline-col">
-                <h4>Proposta Enviada</h4>
-                <div class="lead-card" style="border-color: var(--primary);">Residencial - RJ <span class="value">R$ 28.000</span><span class="status">Aguardando Aval</span></div>
-                <div class="lead-card">Residencial - PR <span class="value">R$ 19.500</span><span class="status">Em Negociação</span></div>
-            </div>
-            <!-- COLUNA 3 -->
-            <div class="pipeline-col">
-                <h4>Vistoria Agendada</h4>
-                <div class="lead-card" style="border-color: var(--primary);">Michele Silva <span class="value">R$ 22.000</span><span class="status">Agendado: Quarta 09h</span></div>
-                <div class="lead-card">Residencial - DF <span class="value">R$ 26.000</span><span class="status">Agendado: 14/05</span></div>
-                <div class="lead-card">Residencial - RS <span class="value">R$ 18.000</span><span class="status">Agendado: 15/05</span></div>
-            </div>
-            <!-- COLUNA 4 -->
-            <div class="pipeline-col">
-                <h4>Contrato & Pós-Venda</h4>
-                <div class="lead-card" style="border-color: var(--accent);">Residencial - SC <span class="value">R$ 21.000</span><span class="status">Faturamento Automático</span></div>
-                <div class="lead-card">Residencial - GO <span class="value">R$ 25.000</span><span class="status">Envio de Boleto IA</span></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- DECISÃO ESTRATÉGICA / PLANOS -->
-<section>
-    <div style="text-align: center;">
-        <div class="badge">Decisão Estratégica</div>
-        <h2>Planos de Escala Solar</h2>
-        <p style="color: var(--text-dim); max-width: 700px; margin: 15px auto;">Escolha o nível de evolução ideal para o faturamento da sua empresa de energia solar.</p>
-    </div>
-    <div class="pricing-grid">
-        <div class="price-card">
-            <h3>Captação Ativa</h3>
-            <span class="desc">Aproveitamento total da sua base antiga de leads. A IA localiza e reativa interessados que não fecharam no passado.</span>
-            <div class="tag-recurrence">+ MANUTENÇÃO MENSAL</div>
-        </div>
-        <div class="price-card">
-            <h3>Triagem Inteligente</h3>
-            <span class="desc">Qualificação automática completa via WhatsApp: coleta de faturas, localização física e viabilidade técnica inicial.</span>
-            <div class="tag-recurrence">+ MANUTENÇÃO MENSAL</div>
-        </div>
-        <div class="price-card featured">
-            <h3>Ecossistema Elite</h3>
-            <span class="desc">O Cérebro Completo: Calculadora Solar Web, IA 24/7 de triagem, CRM Solar, Pipeline Integrado, Relatórios e automação de pós-venda.</span>
-            <div class="tag-recurrence">+ MANUTENÇÃO MENSAL</div>
-        </div>
-        <div class="price-card">
-            <h3>Super Secretária</h3>
-            <span class="desc">IA interna focada na empresa: envio recorrente mensal de boletos para os seus clientes, conferência automática das faturas via IA e gestão de contas de fornecedores.</span>
-            <div class="tag-recurrence">+ MANUTENÇÃO MENSAL</div>
-        </div>
-        <div class="price-card" style="border-color: var(--accent);">
-            <h3>Mantis Solar 360°</h3>
-            <span class="desc">Escala Máxima: Tráfego pago focado em fotovoltaico, IA completa de captação e faturamento pós-venda, Consultoria e Posicionamento de Marca.</span>
-            <div class="tag-recurrence" style="background: rgba(16, 185, 129, 0.1); color: var(--accent);">ESCALABILIDADE TOTAL</div>
-        </div>
-    </div>
-</section>
-
-<!-- GARANTIA -->
-<section style="text-align: center; background: rgba(251, 191, 36, 0.02); border-radius: 60px; padding: 80px 40px; border: 1px solid var(--glass-border); margin-bottom: 40px;">
-    <i class="fa-solid fa-shield-check" style="font-size: 60px; color: var(--primary); margin-bottom: 25px;"></i>
-    <h2>Garantia Incondicional de 7 Dias</h2>
-    <p style="color: var(--text-dim); max-width: 800px; margin: 20px auto; font-size: 18px;">Nós não entregamos ferramentas, entregamos a sua liberdade. Se em 7 dias após a instalação o sistema completo de calculadora, triagem com IA, automação de faturas e pipeline não estiver rodando perfeitamente, devolvemos todo o seu investimento.</p>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section">
-    <div style="text-align: center;">
-        <div class="badge">Dúvidas Comuns</div>
-        <h2>Perguntas Frequentes</h2>
-    </div>
-    <div class="faq-grid">
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Como funciona a automação mensal de faturamento e conferência de boletos? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">O sistema integra-se à sua carteira de pós-venda. Todo mês, a nossa inteligência artificial gera as faturas/boletos dos seus clientes finais, realiza a conferência automatizada de valores com o sistema e realiza o disparo automatizado direto no WhatsApp/E-mail de cada cliente, eliminando o trabalho burocrático e manual da sua equipe financeira.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">A calculadora do site realmente dá uma estimativa real? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">Sim! Ela é calibrada de acordo com as tarifas de energia da sua região. Quando o lead chega ao WhatsApp, a IA confirma a localização exata para refinar o cálculo antes de marcar o agendamento.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Como funciona a integração com a agenda do consultor? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">O sistema integra de forma nativa com as agendas digitais da sua equipe (como Google Calendar ou Outlook). A IA só apresenta os horários realmente vagos e bloqueia a agenda assim que o agendamento é feito pelo lead no chat.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">O lead que chega ao consultor realmente tem interesse? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">Com certeza. O lead que é agendado passou por 3 etapas de qualificação: demonstrou interesse no site, validou seu consumo de energia mensal com a IA e forneceu a foto da fatura para o estudo fotovoltaico técnico.</div>
-        </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">Quanto tempo leva a implementação total? <i class="fa-solid fa-chevron-down"></i></div>
-            <div class="faq-answer">O site integrado com a calculadora e a IA de qualificação no WhatsApp começam a operar in até 5 dias úteis após o alinhamento das tarifas do seu negócio.</div>
-        </div>
-    </div>
-</section>
-
-<!-- FECHAMENTO AMIGÁVEL -->
-<section class="final-cta">
-    <h2>Que tal transformarmos sua rotina juntos? <br> Deixe de lado os processos bagunçados e traga a previsibilidade de escala que seu negócio solar merece.</h2>
-    <p style="color: var(--text-dim); margin-top: 25px; font-size: 18px; max-width: 700px; margin-left: auto; margin-right: auto;">Vamos agendar uma rápida demonstração em vídeo para você ver o funcionamento de cada módulo ao vivo?</p>
-    <a href="https://wa.me/5521964666813?text=Quero+conhecer+o+Ecossistema+Mantis+Solar" class="btn-final">Agendar Demonstração Privada</a>
-</section>
-
-<script>
-    // Configurações do mouseglow
-    const updateGlow = (e) => {
-        const x = (e.touches ? e.touches[0].clientX : e.clientX);
-        const y = (e.touches ? e.touches[0].clientY : e.clientY);
-        document.documentElement.style.setProperty('--x', x + 'px');
-        document.documentElement.style.setProperty('--y', y + 'px');
-    };
-    document.addEventListener('mousemove', updateGlow);
-    document.addEventListener('touchmove', updateGlow, {passive: true});
-
-    // Toggle FAQ
-    function toggleFaq(el) {
-        el.classList.toggle('active');
-    }
-
-    // Calculadora Solar Interativa
-    const billRange = document.getElementById('bill-range');
-    const billLabel = document.getElementById('bill-label');
-    const annualSavings = document.getElementById('annual-savings');
-    const systemSize = document.getElementById('system-size');
-
-    billRange.addEventListener('input', () => {
-        const value = parseInt(billRange.value);
-        billLabel.textContent = `R$ ${value.toLocaleString('pt-BR')}`;
-        
-        // Simulação matemática rápida de economia solar
-        // Média de tarifa nacional est. em R$ 0.95/kWh. Economia de até 90%
-        const consumptionKwh = value / 0.95;
-        const estMonthlySavings = value * 0.90;
-        const estAnnualSavings = estMonthlySavings * 12;
-        
-        // Tamanho do sistema estimado (Média brasileira de irradiação)
-        const sizeKwp = (consumptionKwh / 130).toFixed(1);
-
-        annualSavings.textContent = `R$ ${Math.round(estAnnualSavings).toLocaleString('pt-BR')}`;
-        systemSize.textContent = `${sizeKwp} kWp`;
-    });
-</script>
 
 </body>
 </html>
-
-```
